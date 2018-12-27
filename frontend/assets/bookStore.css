@@ -1,0 +1,34 @@
+/* sizes */
+#main-wrap > div { min-height: 450px; }
+
+/* layout */
+#main-wrap {
+    /* overflow to handle inner floating block */
+    overflow: hidden;
+}
+
+#left-side {
+    float: left;
+    width: 60%;
+}
+
+#right-side {
+    float: right;
+    width: 40%;
+    
+    border-left-color:"black";
+    border-left-width: 3px;
+}
+
+#genial {
+    padding-left:100px;
+}
+
+#vertical-line{
+  width: 3px; /* Line width */
+  background-color: black; /* Line color */
+  height: 100%; /* Override in-line if you want specific height. */
+  float: left; /* Causes the line to float to left of content. 
+    You can instead use position:absolute or display:inline-block
+    if this fits better with your design */
+}

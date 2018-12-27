@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "body-parser": "*",
+    "cors": "*",
+    "ejs": "*",
+    "express": "*",
+    "mysql": "*",
+    "sequelize": "*"
+  }
+}

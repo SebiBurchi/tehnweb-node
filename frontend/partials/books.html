@@ -1,0 +1,63 @@
+<div ng-controller="StoreController">
+    <!--  Store Header  -->
+    <header>
+      <h1 class="text-center">Book Store</h1>
+    </header>
+
+    <!--  Products Container  -->
+    <div class="list-group">
+      <!--  Product Container  -->
+      <div class="list-group-item" ng-repeat="product in products">
+        <h1>{{product.name}} </h1>
+        <h5> <em class="pull-right">Pret in magazin: {{product.price | currency: "RON "}}</em></h5>
+        <img ng-src="{{product.image}}" width = "200" height = "300"></img>
+        
+        <section ng-controller = "PanelController as panel">
+          <ul class = "nav nav-pills">
+            <li ng-class = "{active: panel.isSelected(1)}">
+              <a href ng-click = "panel.selectTab(1)">
+                Description
+              </a>
+            </li>
+            <li ng-class = "{active: panel.isSelected(2)}">
+              <a href ng-click = "panel.selectTab(2)">
+                Reviews
+              </a>
+            </li>
+          </ul>
+          <div class = "panel" ng-show = "panel.isSelected(1)">
+            <h4>{{product.title}}</h4>
+            <p>{{product.description}}</p>
+          </div>
+          <div class = "panel" ng-show = "panel.isSelected(2)">
+            <h4>Reviews</h4>
+            <blockquote ng-repeat = "review in product.reviews">
+              <b>Stars: {{review.stars}}</b><br>
+              {{review.body}}<br>
+              <cite>by: {{review.author}} on {{review.createdAt| date}}</cite>
+            </blockquote>
+            <form name="reviewForm" ng-controller = "ReviewController"
+                    ng-submit = "reviewForm.$valid && addReview(review, product)" novalidate>
+              <label>Stars:</label>
+              <select ng-model = "review.stars" required>
+                <option value = "1">1 star</option>
+                <option value = "2">2 stars</option>
+                <option value = "3">3 stars</option>
+                <option value = "4">4 stars</option>
+                <option value = "5">5 stars</option>
+              </select>
+              <label>Opinion</label>
+              <textarea placeholder = "write a short review of the book ..." name = "body" ng-model = "review.body" required></textarea>
+              <label>by:</label>
+              <input placeholder = "somebody@gmail.com" name = "author" ng-model = "review.author" type = "email" required/>
+              <br>
+              <input type="submit" value="Submit Review"/>
+            </form>
+          </div>
+        </section>
+        
+        <button ng-show = "product.canPurchase">Add to cart</button>
+      
+      </div>
+    </div>
+  </div>
