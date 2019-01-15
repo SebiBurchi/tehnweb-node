@@ -1,19 +1,36 @@
-<div ng-controller = "StoreController">
+<style type="text/css">
+.main {
+    background-image: url('images/background.jpg');
+}
+#cont {
+    background: #F5F5DC;
+    margin: 0 auto!important;
+}
+
+</style>
+<div ng-controller = "StoreController" class="main">
     <div>
         <!--  Store Header  -->
         <header>
-            <h1 class="text-center">Book World</h1>
+            <h1 class="text-center" style="color:red;">Book World</h1>
         </header>
+        
     </div>
-    <div id = "main-wrap">
-        <div id = "left-side">
-            <!--  Products Container  -->
-            <div class="list-group">
-                <!--  Product Container  -->
-                <div class="list-group-item" ng-repeat="product in products">
+    <div class="container" id="cont">
+          <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+ Adauga o noua carte in biblioteca!
+</button>
+                <div ng-repeat="product in products" style="border-style: solid;">
+                    <div class=></div>
+                    <div class="col-sm-1">
                     <h1>{{product.name}} </h1>
+                    </div>
+                    <div class="col-sm-1">
                     <h5> <em class="pull-right">Pret in magazin: {{product.price | currency: "RON "}}</em></h5>
-                    <img ng-src="{{product.image}}" width="200" height="300"></img>
+                    </div>
+                    <div class="col-sm-10">
+                    <img ng-src="{{product.image}}" width="300" height="300"></img>
         
                     <section ng-controller="PanelController as panel">
                         <ul class="nav nav-pills">
@@ -54,33 +71,49 @@
                                 <label>by:</label>
                                 <input placeholder="somebody@gmail.com" name="author" ng-model="review.author" type="email" required/>
                                 <br>
-                                <input type="submit" value="Submit Review" />
+                                <input type="submit" class="btn btn-success" value="Submit Review" />
                             </form>
                         </div>
                     </section>
-                    
+                    </div>
                     
                 </div>
-            </div>
-        </div>
-    
-        <div id = "right-side">
-            
-            <form name="formAddBook" id = "genial" ng-submit="addBook(book, products)" novalidate>
+    </div>
+      
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Adauga o noua carte in biblioteca</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+       <form name="formAddBook" id = "genial" ng-submit="addBook(book, products)">
                                 <label>Titlu:</label>
-                                <textarea placeholder="book title" name="title" ng-model="book.title"></textarea>
+                                <textarea placeholder="book title" name="title" ng-model="book.title" required></textarea>
                                 <label>Autor:</label>
-                                <textarea placeholder="book author" name="author" ng-model="book.author"></textarea></textarea>
+                                <textarea placeholder="book author" name="author" ng-model="book.author" required></textarea>
                                 <label>Pret:</label>
-                                <textarea placeholder="pretul pietei" name="price" ng-model="book.price" type="number"></textarea></textarea>
+                                <textarea placeholder="pretul pietei" name="price" ng-model="book.price" type="number" required></textarea>
                                 <label>Descriere:</label>
-                                <textarea placeholder="a description of the book" name="description" ng-model="book.description"></textarea></textarea>
+                                <textarea placeholder="a description of the book" name="description" ng-model="book.description" required></textarea>
                                 <label>Imagine:</label>
-                                <textarea placeholder="link of book's image" name="image" ng-model="book.image"></textarea></textarea>
+                                <textarea placeholder="link of book's image" name="image" ng-model="book.image" required></textarea>
                                 <br>
-                                <input type="submit" value="Adauga o noua carte!" />
+                                <input type="submit" class="btn btn-success" value="Adauga o noua carte"/>
+                                 
             </form>
-        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
     </div>
 </div>
 </div>

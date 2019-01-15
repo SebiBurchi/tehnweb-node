@@ -7,3 +7,13 @@
 .ng-pristine.ng-invalid {
     border-color: transparent;
 }
+
+.modal-dialog,
+.modal-content {
+    /* 80% of window height */
+    height: 120%;
+}
+
+.row {
+    border:5px;
+}

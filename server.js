@@ -46,7 +46,7 @@ router.route ('/books')
     var book = req.body;
     //save the book and check for errors
     Book.create (book)
-      .complete (function (err) {
+      .then (function (err) {
         if (err) {
           res.send(err);
         } else {
@@ -57,7 +57,7 @@ router.route ('/books')
   //get all the books
   .get (function (req, res) {
     Book.findAll()
-    .complete (function (err, books) {
+    .then(function (err, books) {
       if (err) {
         res.send(err)
       } else {
@@ -69,7 +69,7 @@ router.route ('/books')
 router.route ('/books/:book_id') 
   .get (function (req, res) {
     Book.find ({where : {id: req.param('book_id')}
-    }).complete (function (err, book){
+    }).then (function (err, book){
       if (err) {
         res.send(err)
       } else {
@@ -84,7 +84,7 @@ router.route ('/reviews/:book_id')
   //get all reviews for a specific book
   .get (function (req, res) {
     Review.findAll({where : {BookId: req.param('book_id')}
-    }).complete (function (err, books) {
+    }).then(function (err, books) {
       if (err) {
         res.send(err)
       } else {
@@ -95,14 +95,14 @@ router.route ('/reviews/:book_id')
   .post (function (req, res) {
       var review = req.body
       Book.find ({where : {id: req.param('book_id')}
-        }).complete(function (err, book) {
+        }).then(function (err, book) {
           if (err)
             console.log(err)
             else {
               //console.log(book)
               review.BookId = book.id;
               Review.create (review, book)
-                .complete (function (err, response) {
+                .then (function (err, response) {
                             if (err) {
                                 res.json(book)
                                 res.send(err)
